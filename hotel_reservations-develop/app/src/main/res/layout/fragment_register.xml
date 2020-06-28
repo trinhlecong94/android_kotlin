@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/headerBarHeight">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                style="@style/style_title_action_bar"
+                android:layout_width="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="Sign Up" />
+
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/headerBarHeight"
+                android:paddingStart="24dp"
+                android:paddingEnd="16dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_back_white"
+                android:tint="@color/colorAccent"
+                android:visibility="visible" />
+        </RelativeLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appbarLayout">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:fitsSystemWindows="true"
+            android:orientation="vertical"
+            android:paddingBottom="54dp">
+
+            <com.ctr.hotelreservations.ui.wedget.InputGroupLayout
+                android:id="@+id/inputFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_24dp"
+                app:edit_hint="Enter first name"
+                app:error_textOnEmpty="@string/error001"
+                app:label_text="First name" />
+
+            <com.ctr.hotelreservations.ui.wedget.InputGroupLayout
+                android:id="@+id/inputLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/inputFirstName"
+                android:layout_marginTop="@dimen/dimen_24dp"
+                app:edit_hint="Enter last name"
+                app:error_textOnEmpty="@string/error001"
+                app:label_text="Last name" />
+
+            <com.ctr.hotelreservations.ui.wedget.InputGroupLayout
+                android:id="@+id/inputPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/inputLastName"
+                android:layout_marginTop="@dimen/dimen_24dp"
+                app:edit_hint="Enter phone number"
+                app:edit_inputType="phone"
+                app:error_text="Phone number is not valid"
+                app:error_textOnEmpty="@string/error001"
+                app:label_text="Phone" />
+
+            <com.ctr.hotelreservations.ui.wedget.InputGroupLayout
+                android:id="@+id/inputEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/inputPhone"
+                android:layout_marginTop="@dimen/dimen_24dp"
+                app:edit_hint="Enter your email"
+                app:edit_maxLength="255"
+                app:error_text="Email is not valid"
+                app:error_textOnEmpty="@string/error001"
+                app:label_text="Email" />
+
+            <com.ctr.hotelreservations.ui.wedget.InputGroupLayout
+                android:id="@+id/inputPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/inputEmail"
+                android:layout_marginTop="@dimen/dimen_24dp"
+                app:edit_hint="Enter your password"
+                app:edit_inputType="textPassword"
+                app:edit_maxLength="50"
+                app:error_text="Password must have minimum 8 characters, at least one uppercase letter, one lowercase letter and one number"
+                app:error_textOnEmpty="@string/error001"
+                app:label_text="Password" />
+
+            <com.ctr.hotelreservations.ui.wedget.InputGroupLayout
+                android:id="@+id/inputConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/inputPassword"
+                android:layout_marginTop="@dimen/dimen_24dp"
+                app:edit_hint="Confirm your password"
+                app:edit_inputType="textPassword"
+                app:edit_maxLength="50"
+                app:error_text="Password does not match !"
+                app:error_textOnEmpty="@string/error001"
+                app:label_text="Confirm Password" />
+
+            <Button
+                android:id="@+id/tvSignUp"
+                style="@style/AppButton"
+                android:layout_width="200dp"
+                android:layout_height="@dimen/dimen_48dp"
+                android:layout_below="@id/inputEmail"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="@dimen/dimen_20dp"
+                android:layout_marginTop="240dp"
+                android:layout_marginEnd="@dimen/dimen_20dp"
+                android:background="@drawable/bg_button_round_gradient_enable"
+                android:text="SIGN UP"
+                android:textColor="#ffffffff" />
+
+            <TextView
+                android:id="@+id/tvAlready"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvSignUp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dimen_30dp"
+                android:fontFamily="@font/lato_black"
+                android:text="Already have an account?"
+                android:textColor="#ff666666"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvActionHere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvAlready"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dimen_12dp"
+                android:fontFamily="@font/lato_black"
+                android:text="LOGIN HERE"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

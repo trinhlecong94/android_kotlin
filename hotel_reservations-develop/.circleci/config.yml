@@ -1,0 +1,171 @@
+version: 2.1
+
+executors:
+  default:
+    docker:
+      - image: circleci/android:api-28-node
+    working_directory: ~/code
+    environment:
+      JVM_OPTS: -Xmx3200m
+
+commands:
+  prepare_workspace:
+    steps:
+      - attach_workspace:
+          at: ~/code
+
+  save_workspace:
+    steps:
+      - persist_to_workspace:
+          root: ~/code
+          paths: 
+            - .
+
+  install_rubygem:
+    steps:
+      - run:
+          name: Set Ruby Version
+          command:  echo "ruby-2.6" > .ruby-version
+      - restore_cache:
+          keys:
+            - v1-gems-{{ checksum ".ruby-version" }}-{{ checksum "Gemfile.lock" }}
+            - v1-gems-{{ checksum ".ruby-version" }}
+      - run:
+          name: Install RubyGems
+          command: bundle check || bundle install --path vendor/bundle
+          environment:
+            BUNDLE_JOBS: 4
+            BUNDLE_RETRY: 3
+      - save_cache:
+          key: v1-gems-{{ checksum ".ruby-version" }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+  install_nodejs:
+    steps:
+      - run:
+          name: Echo nodejs version to detect valid cache
+          command: node --version > .nodeversion
+      - restore_cache:
+          keys:
+            - v1-nodejs-{{ checksum ".nodeversion" }}-{{ checksum "package-lock.json" }}
+            - v1-nodejs-{{ checksum ".nodeversion" }}
+      - run:
+          name: Install NodeJS package
+          command: npm install
+      - save_cache:
+          key: v1-nodejs-{{ checksum ".nodeversion" }}-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+
+jobs:
+  prepare:
+    executor:
+      name: default
+    steps:
+      - checkout
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum "app/build.gradle" }}
+      - save_workspace
+
+  lint:
+    executor:
+      name: default
+    steps:
+      - prepare_workspace
+      - run:
+          name: Cleanup
+          command: ./gradlew clean
+      - run:
+          name: Run Lints
+          command: ./gradlew lintDebug
+      - store_artifacts:
+          path: app/build/reports
+          destination: reports
+      - store_test_results:
+          path: app/build/test-results
+
+  test:
+    executor:
+      name: default
+    steps:
+      - prepare_workspace
+      - run:
+          name: Cleanup
+          command: ./gradlew clean
+      - run:
+          name: Run tests (for Debug)
+          command: ./gradlew testDebug
+      - store_artifacts:
+          path: app/build/reports
+          destination: reports
+      - store_test_results:
+          path: app/build/test-results
+
+  deploy:
+    parameters:
+      variant:
+        type: enum
+        enum: ['debug', 'staging', 'release']
+        default: debug
+      deploy_to_all:
+        type: boolean
+        default: false
+    executor:
+      name: default
+    steps:
+      - prepare_workspace
+      - install_nodejs
+      - install_rubygem
+      - run:
+          name: Export version code
+          command: echo 'export ORG_GRADLE_PROJECT_VERSION_CODE="$CIRCLE_BUILD_NUM"' >> $BASH_ENV
+      - run:
+          name: Build APK file and distribute to Firebase App Distribution
+          command: bundle exec fastlane beta variant:<< parameters.variant >> notify_to_all:<< parameters.deploy_to_all >>
+      - store_artifacts:
+          path: app/build/outputs
+          destination: outputs
+
+workflows:
+  build_and_deploy:
+    jobs:
+      - prepare
+      - lint:
+          requires:
+            - prepare
+      - test:
+          requires:
+            - prepare
+      - deploy:
+          requires:
+            - prepare
+          filters:
+            branches:
+              only:
+                - master
+      - deploy:
+          deploy_to_all: true
+          requires:
+            - prepare
+          filters:
+            branches:
+              only:
+                - /release\/.*/
+                - /hotfix\/.*/
+      - deploy:
+          variant: release
+          deploy_to_all: true
+          requires:
+            - prepare
+          filters:
+            branches:
+              only:
+                - master

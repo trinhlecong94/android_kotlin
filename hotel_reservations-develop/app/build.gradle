@@ -1,0 +1,119 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        applicationId "com.ctr.hotelreservations"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+//            testCoverageEnabled true
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    testOptions {
+        unitTests.all {
+            setIgnoreFailures(true)
+            include "**/*Test.class"
+            exclude "**/element/*Test.class"
+        }
+        unitTests.returnDefaultValues = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    applicationVariants.all { variant ->
+        switch (variant.getName()) {
+            case "debug":
+                variant.buildConfigField "String", "BASE_API_URL", '"https://online-hotel-management.herokuapp.com/"'
+                variant.buildConfigField "String", "BASE_IMAGE_URL", '"https:"'
+                variant.buildConfigField "String", "APP_NAME", '"Hotel reservation"'
+                break
+            }
+    }
+}
+
+//Config for output apk
+android.applicationVariants.all { variant ->
+    variant.outputs.all {
+        def date = new Date()
+        def formattedDate = date.format('yyyyMMdd_HHmm')
+        switch (variant.getName()) {
+            case "debug":
+                outputFileName = "AppName-Dev-${variant.versionName}_${formattedDate}.apk"
+                break
+        }
+    }
+}
+
+dependencies {
+    implementation project(':library')
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:2.11.0'
+    testImplementation "org.robolectric:robolectric:3.6.1"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // Android X
+    implementation 'androidx.core:core-ktx:1.3.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.browser:browser:1.2.0'
+
+    // Retrofit 2
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+
+    // RxJava
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.6'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+
+    // Date Picker
+    implementation 'com.wdullaer:materialdatetimepicker:4.2.1'
+
+    // View
+    implementation 'me.grantland:autofittextview:0.2.1'
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
+    implementation 'com.loopeer.lib:shadow:0.0.4-beta3'
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'me.relex:circleindicator:2.1.4'
+}

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/headerBarHeight">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgBack"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:layout_width="@dimen/dimen_48dp"
+            android:layout_height="@dimen/dimen_48dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:scaleType="centerInside"
+            android:tint="@color/colorAccent"
+            app:srcCompat="@drawable/ic_back_white" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivShare"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:layout_width="@dimen/actionbar_size"
+            android:layout_height="@dimen/actionbar_size"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/actionbar_size"
+            android:paddingTop="17dp"
+            android:paddingBottom="17dp"
+            android:tint="@color/black"
+            app:srcCompat="@drawable/ic_download" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivFavorite"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:layout_width="@dimen/headerBarHeight"
+            android:layout_height="@dimen/headerBarHeight"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/dimen_5dp"
+            android:paddingTop="17dp"
+            android:paddingBottom="17dp"
+            android:src="@drawable/ic_heart_black" />
+    </RelativeLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/swipeRefresh"
+        android:layout_below="@+id/header">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/imgBanner1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_dummy"
+                        app:layout_constraintDimensionRatio="2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/imgBanner2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/dimen_4dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bg_onboard2"
+                        app:layout_constraintDimensionRatio="1.5"
+                        app:layout_constraintEnd_toStartOf="@id/imgBanner3"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/imgBanner1" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/imgBanner3"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/dimen_4dp"
+                        android:layout_marginEnd="@dimen/dimen_4dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_dummy"
+                        app:layout_constraintDimensionRatio="1.5"
+                        app:layout_constraintEnd_toStartOf="@id/imgBanner4"
+                        app:layout_constraintStart_toEndOf="@id/imgBanner2"
+                        app:layout_constraintTop_toTopOf="@id/imgBanner2" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/imgBanner4"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_dummy"
+                        app:layout_constraintDimensionRatio="1.5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/imgBanner3"
+                        app:layout_constraintTop_toTopOf="@id/imgBanner2" />
+
+                    <TextView
+                        android:id="@+id/tvMoreCountImage"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_alignStart="@+id/ivBanner"
+                        android:layout_alignTop="@+id/ivBanner"
+                        android:layout_alignEnd="@+id/ivBanner"
+                        android:layout_alignBottom="@+id/ivBanner"
+                        android:background="#6b000000"
+                        android:fontFamily="@font/lato_bold"
+                        android:gravity="center"
+                        android:text="+12"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@id/imgBanner4"
+                        app:layout_constraintEnd_toEndOf="@id/imgBanner4"
+                        app:layout_constraintStart_toStartOf="@id/imgBanner4"
+                        app:layout_constraintTop_toTopOf="@id/imgBanner4" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <include layout="@layout/layout_header_room_detail" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_6dp"
+        android:layout_above="@+id/rlPriceDetail"
+        android:background="@drawable/bg_shadow_bottom_to_top" />
+
+    <RelativeLayout
+        android:id="@+id/rlPriceDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bg_shape_price_detail"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/dimen_20dp"
+        android:paddingTop="@dimen/dimen_12dp"
+        android:paddingEnd="@dimen/end_padding_item_room_detail"
+        android:paddingBottom="@dimen/dimen_12dp"
+        android:visibility="visible">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constrainPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/lnBooking">
+
+            <TextView
+                android:id="@+id/tvRoomPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_black"
+                android:text="200,000đ"
+                android:textColor="#ff333333"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvPerNight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_5dp"
+                android:fontFamily="@font/lato_bold"
+                android:gravity="bottom"
+                android:paddingBottom="@dimen/dimen_3dp"
+                android:text="@string/per_night"
+                android:textColor="#ff666666"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvRoomPrice"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvRoomPrice" />
+
+            <TextView
+                android:id="@+id/tvOldPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvRoomPrice"
+                android:layout_marginTop="@dimen/dimen_3dp"
+                android:background="@drawable/bg_text_dash"
+                android:fontFamily="@font/lato_regular"
+                android:textColor="@color/gray_dark"
+                android:textSize="13sp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvRoomPrice" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:id="@+id/viewLoadingPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/constrainPrice"
+            android:layout_alignBottom="@+id/constrainPrice"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/white"
+            android:padding="@dimen/dimen_10dp"
+            android:visibility="gone">
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                style="@style/SpinKitView.Large.Circle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:SpinKit_Color="@color/colorAccent" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/lnBooking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_instant_book_room_detail"
+            android:clickable="true"
+            android:drawablePadding="@dimen/dimen_12dp"
+            android:focusable="true"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:minWidth="120dp"
+            android:paddingStart="@dimen/dimen_10dp"
+            android:paddingTop="@dimen/dimen_12dp"
+            android:paddingEnd="@dimen/dimen_10dp"
+            android:paddingBottom="@dimen/dimen_12dp"
+            android:text="Booking now"
+            android:textColor="#ffffffff"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_6dp"
+        android:layout_below="@+id/header"
+        android:background="@drawable/bg_shadow_top_to_bottom_light" />
+
+    <FrameLayout
+        android:id="@+id/lnLoadingHeaderDetail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:visibility="gone">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivBackOnLoading"
+            style="@style/Widget.AppCompat.ActionButton"
+            android:layout_width="@dimen/dimen_48dp"
+            android:layout_height="@dimen/dimen_48dp"
+            android:layout_marginTop="@dimen/notification_bar_size"
+            android:scaleType="centerInside"
+            android:tint="@color/colorAccent"
+            app:srcCompat="@drawable/ic_back_white" />
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/progressBar"
+            style="@style/SpinKitView.Large.ThreeBounce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="visible"
+            app:SpinKit_Color="@color/colorAccent" />
+    </FrameLayout>
+</RelativeLayout>

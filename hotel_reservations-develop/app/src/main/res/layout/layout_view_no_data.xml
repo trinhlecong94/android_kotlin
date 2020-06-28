@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivNoData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bg_no_data" />
+
+    <TextView
+        android:id="@+id/tvNoData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/lato_semibold"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="6sp"
+        android:text="@string/favorite_empty"
+        android:textColor="#ff333333"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvSubContent" />
+
+    <TextView
+        android:id="@+id/tvSubContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="6sp"
+        android:textColor="#ff666666"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivNoData" />
+
+    <TextView
+        android:id="@+id/tvActionMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:background="@drawable/bg_button_round_gradient_enable"
+        android:fontFamily="@font/lato_bold"
+        android:paddingStart="@dimen/dimen_30dp"
+        android:paddingTop="@dimen/dimen_10dp"
+        android:paddingEnd="@dimen/dimen_30dp"
+        android:paddingBottom="@dimen/dimen_10dp"
+        android:text="@string/discovery_more"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:visibility="visible" />
+</LinearLayout>

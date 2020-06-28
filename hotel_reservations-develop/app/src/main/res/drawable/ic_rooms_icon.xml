@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="12dp"
+    android:height="12dp"
+    android:viewportWidth="12.0"
+    android:viewportHeight="12.0">
+    <path
+        android:fillColor="@color/ic_rooms_icon__0"
+        android:fillType="evenOdd"
+        android:pathData="M1,0L11,0A1,1 0,0 1,12 1L12,10A1,1 0,0 1,11 11L1,11A1,1 0,0 1,0 10L0,1A1,1 0,0 1,1 0z"
+        android:strokeWidth="1.0"
+        android:strokeColor="#00000000" />
+    <path
+        android:fillColor="#ffe9e9e9"
+        android:fillType="evenOdd"
+        android:pathData="M1.1104,0.1234L8.1104,0.9012C8.6169,0.9574 9,1.3855 9,1.895L9,10.8827C9,11.435 8.5523,11.8827 8,11.8827C7.9631,11.8827 7.9262,11.8807 7.8896,11.8766L0.8896,11.0988C0.3831,11.0426 0,10.6145 0,10.105L0,1.1173C0,0.565 0.4477,0.1173 1,0.1173C1.0369,0.1173 1.0738,0.1193 1.1104,0.1234Z"
+        android:strokeWidth="1.0"
+        android:strokeColor="#00000000" />
+    <path
+        android:fillColor="#ffffffff"
+        android:fillType="evenOdd"
+        android:pathData="M6.5,5L6.5,5A0.5,0.5 0,0 1,7 5.5L7,8.5A0.5,0.5 0,0 1,6.5 9L6.5,9A0.5,0.5 0,0 1,6 8.5L6,5.5A0.5,0.5 0,0 1,6.5 5z"
+        android:strokeWidth="1.0"
+        android:strokeColor="#00000000" />
+</vector>

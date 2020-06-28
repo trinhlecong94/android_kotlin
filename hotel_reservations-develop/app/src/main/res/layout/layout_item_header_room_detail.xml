@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_header_list_room_detail"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/dimen_20dp"
+        android:paddingTop="@dimen/dimen_15dp"
+        android:paddingEnd="@dimen/dimen_20dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_black"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="1sp"
+                android:text="@string/detail"
+                android:textColor="#ff333333"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivDetail"
+                android:layout_width="13dp"
+                android:layout_height="3dp"
+                android:layout_marginTop="2dp"
+                android:src="@drawable/ic_tab_selected" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnReview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvReviews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_black"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="1sp"
+                android:text="@string/reviews"
+                android:textColor="#ff333333"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivReviews"
+                android:layout_width="13dp"
+                android:layout_height="3dp"
+                android:layout_marginTop="2dp"
+                android:src="@drawable/ic_tab_selected" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvPolicy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_black"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="1sp"
+                android:text="@string/policy"
+                android:textColor="#ff333333"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivPolicy"
+                android:layout_width="13dp"
+                android:layout_height="3dp"
+                android:layout_marginTop="2dp"
+                android:src="@drawable/ic_tab_selected" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvSuggestion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_black"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="1sp"
+                android:text="@string/suggestion"
+                android:textColor="#ff333333"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCalendar"
+                android:layout_width="13dp"
+                android:layout_height="3dp"
+                android:layout_marginTop="2dp"
+                android:src="@drawable/ic_tab_selected" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.30000007dip"
+        android:layout_marginTop="1dp"
+        android:background="#ffececec" />
+</LinearLayout>
